@@ -19,7 +19,7 @@ pixels = neopixel.NeoPixel(pixel_pin, num_pixels, brightness=1.0, auto_write=Fal
 
 # Start & stop times for the lights
 TOD_Start = 8 # Start at 8:00 am
-TOD_Stop = 21 # Lights out at 9:00 pm
+TOD_Stop = 20 # Lights out at 8:00 pm
 
 # Wheel is a subroutine to vary the colors
 def wheel(pos):
@@ -53,6 +53,7 @@ def rainbow_cycle(wait):
         pixels.show()
         time.sleep(wait)
 
+
 # Finally the program
 while True:
     currentTimeOfDay = datetime.datetime.now()
@@ -61,6 +62,8 @@ while True:
         print ("Lights On!")
         rainbow_cycle(0.01)    # rainbow cycle with 1ms delay per step
     else:
+        pixels.fill((0,0,0))
+        pixels.show()
         print("Lights Out!")
         time.sleep(2)
 
